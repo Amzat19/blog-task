@@ -1,0 +1,78 @@
+.posts {
+  margin: 3rem 0;
+}
+
+.posts h2 {
+  font-size: 2.5rem;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.posts input {
+  height: 2rem;
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid rgba(102, 102, 102, 0.35);
+  max-width: 20rem;
+  border-radius: 0.25rem;
+  outline: none;
+  margin-bottom: 2rem;
+}
+
+.postwrapper {
+  display: grid;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.post {
+  max-width: 350px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.post a {
+  text-decoration: none;
+  color: black;
+}
+
+.post h3 {
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.post h3:hover {
+  color: #666;
+}
+
+.post p {
+  font-size: 0.875rem;
+  color: #666;
+}
+
+.post span {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+}
+
+.pagination button {
+  padding: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .postwrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+}

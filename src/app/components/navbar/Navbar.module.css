@@ -1,0 +1,18 @@
+.navbar {
+  height: 20rem;
+  display: flex;
+  background: url("../../../../public//blog-banner.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.navbar h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  align-self: end;
+  justify-self: center;
+  flex: 1;
+  text-align: center;
+  color: white;
+}
