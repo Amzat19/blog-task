@@ -1,10 +1,3 @@
-export interface postsDataType {
-  id: number;
-  title: string;
-  content: string;
-  timestamp: string;
-}
-
 const postsData: postsDataType[] = [
   {
     id: 1,

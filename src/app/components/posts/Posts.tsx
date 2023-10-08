@@ -1,13 +1,17 @@
 "use client";
-import { useState } from "react";
+
 import styles from "./Posts.module.css";
-import postsData, { postsDataType } from "@/utils/postData";
 import Link from "next/link";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { setCurrentPage, setSearchTerm } from "@/redux/features/postsSlice";
 
 export default function Posts() {
-  const postsPerPage = 4;
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const [searchTerm, setSearchTerm] = useState<string>("");
+  const postsPerPage = useAppSelector((state) => state.posts.postsPerPage);
+  const currentPage = useAppSelector((state) => state.posts.currentPage);
+  const searchTerm = useAppSelector((state) => state.posts.searchTerm);
+  const postsData = useAppSelector((state) => state.posts.postsData);
+
+  const dispatch = useAppDispatch();
 
   const startIndex = (currentPage - 1) * postsPerPage;
   const endIndex = startIndex + postsPerPage;
@@ -20,13 +24,8 @@ export default function Posts() {
 
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
 
-  const handlePageChange = (newPage: number) => {
-    setCurrentPage(newPage);
-  };
-
   const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
-    setCurrentPage(1); // Reset to the first page when searching
+    dispatch(setSearchTerm(event.target.value));
   };
 
   return (
@@ -54,7 +53,7 @@ export default function Posts() {
       </div>
       <div className={styles.pagination}>
         <button
-          onClick={() => handlePageChange(currentPage - 1)}
+          onClick={() => dispatch(setCurrentPage(currentPage - 1))}
           disabled={currentPage === 1}
         >
           Previous
@@ -63,7 +62,7 @@ export default function Posts() {
           Page {currentPage} of {totalPages}
         </p>
         <button
-          onClick={() => handlePageChange(currentPage + 1)}
+          onClick={() => dispatch(setCurrentPage(currentPage + 1))}
           disabled={currentPage === totalPages}
         >
           Next
