@@ -6,7 +6,7 @@ interface PostsState {
 }
 
 interface postsDataType {
-  id: number;
+  id: string;
   title: string;
   content: string;
   timestamp: string;

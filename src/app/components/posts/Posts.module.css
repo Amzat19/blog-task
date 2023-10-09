@@ -8,6 +8,14 @@
   margin-bottom: 2rem;
 }
 
+.form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  gap: 2rem;
+}
+
 .posts input {
   height: 2rem;
   width: 100%;
@@ -16,7 +24,6 @@
   max-width: 20rem;
   border-radius: 0.25rem;
   outline: none;
-  margin-bottom: 2rem;
 }
 
 .postwrapper {
@@ -56,6 +63,12 @@
 .post span {
   font-size: 0.75rem;
   color: #666;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .pagination {

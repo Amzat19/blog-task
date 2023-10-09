@@ -2,8 +2,13 @@
 
 import styles from "./Posts.module.css";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { setCurrentPage, setSearchTerm } from "@/redux/features/postsSlice";
+import {
+  deletePost,
+  setCurrentPage,
+  setSearchTerm,
+} from "@/redux/features/postsSlice";
 
 export default function Posts() {
   const postsPerPage = useAppSelector((state) => state.posts.postsPerPage);
@@ -12,6 +17,8 @@ export default function Posts() {
   const postsData = useAppSelector((state) => state.posts.postsData);
 
   const dispatch = useAppDispatch();
+
+  const router = useRouter();
 
   const startIndex = (currentPage - 1) * postsPerPage;
   const endIndex = startIndex + postsPerPage;
@@ -31,13 +38,19 @@ export default function Posts() {
   return (
     <section className={`${styles.posts} container`}>
       <h2>All Posts</h2>
-      <input
-        type="search"
-        name="search"
-        placeholder="Search for posts by title"
-        value={searchTerm}
-        onChange={handleSearchChange}
-      />
+      <div className={styles.form}>
+        <input
+          type="search"
+          name="search"
+          placeholder="Search for posts by title"
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
+        <button onClick={() => router.push("/createPost")}>
+          Create new post
+        </button>
+      </div>
+
       <div className={styles.postwrapper}>
         {currentPosts.map((post: postsDataType) => {
           return (
@@ -47,6 +60,14 @@ export default function Posts() {
               </Link>
               <p>{post.content}</p>
               <span>{post.timestamp}</span>
+              <div className={styles.actions}>
+                <button onClick={() => router.push(`/editPost/${post.id}`)}>
+                  Edit Post
+                </button>
+                <button onClick={() => dispatch(deletePost(post.id))}>
+                  Delete Post
+                </button>
+              </div>
             </article>
           );
         })}
@@ -59,7 +80,7 @@ export default function Posts() {
           Previous
         </button>
         <p>
-          Page {currentPage} of {totalPages}
+          Page {currentPage} of {filteredPosts.length ? totalPages : 1}
         </p>
         <button
           onClick={() => dispatch(setCurrentPage(currentPage + 1))}

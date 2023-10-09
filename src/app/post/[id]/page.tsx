@@ -1,11 +1,11 @@
-import postsData, { postsDataType } from "@/utils/postData";
+"use client";
+import { useAppSelector } from "@/redux/hooks";
 import styles from "./page.module.css";
 import Link from "next/link";
 
-export default function Post({ params }: { params: { id: number } }) {
-  const post = postsData.find(
-    (post: postsDataType) => post.id === Number(params.id)
-  );
+export default function Post({ params }: { params: { id: string } }) {
+  const postsData = useAppSelector((state) => state.posts.postsData);
+  const post = postsData.find((post: postsDataType) => post.id === params.id);
 
   if (!post) {
     return (
