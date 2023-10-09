@@ -67,6 +67,10 @@ export default function Posts() {
                 <button onClick={() => dispatch(deletePost(post.id))}>
                   Delete Post
                 </button>
+                <span>
+                  {post.comments.length}{" "}
+                  {post.comments.length === 1 ? "comment" : "comments"}
+                </span>
               </div>
             </article>
           );

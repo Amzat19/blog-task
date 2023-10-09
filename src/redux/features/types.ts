@@ -10,4 +10,10 @@ interface postsDataType {
   title: string;
   content: string;
   timestamp: string;
+  comments: CommentDataType[];
+}
+
+interface CommentDataType {
+  id: string;
+  content: string;
 }

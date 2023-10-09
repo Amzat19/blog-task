@@ -28,6 +28,7 @@ const postsSlice = createSlice({
       const newPost = {
         id: uuidv4(),
         timestamp: formatTimestamp(new Date().toISOString()),
+        comments: [],
         ...action.payload,
       };
       state.postsData.push(newPost);
@@ -50,6 +51,22 @@ const postsSlice = createSlice({
         postToUpdate.content = content;
       }
     },
+    addCommentToPost: (
+      state,
+      action: PayloadAction<{ postId: string; comment: string }>
+    ) => {
+      const { postId, comment } = action.payload;
+      const postToUpdate = state.postsData.find((post) => post.id === postId);
+
+      if (postToUpdate) {
+        const newComment = {
+          id: uuidv4(),
+          content: comment,
+        };
+
+        postToUpdate.comments.push(newComment);
+      }
+    },
   },
 });
 
@@ -59,5 +76,6 @@ export const {
   addNewPost,
   deletePost,
   editPost,
+  addCommentToPost,
 } = postsSlice.actions;
 export default postsSlice.reducer;

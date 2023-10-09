@@ -9,6 +9,10 @@ body {
   min-height: 100vh;
 }
 
+button {
+  cursor: pointer;
+}
+
 .container {
   padding: 0 2rem;
 }

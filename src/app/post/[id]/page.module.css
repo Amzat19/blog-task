@@ -23,3 +23,33 @@
   justify-content: center;
   padding: 2rem;
 }
+
+.postView article:last-child {
+  justify-content: stretch;
+  width: 100%;
+}
+
+.comments h2 {
+  padding-bottom: 1rem;
+}
+
+.comment {
+  padding-bottom: 1rem;
+}
+
+.comment div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-bottom: 0.5rem;
+}
+
+.comments textarea {
+  padding: 1rem;
+  resize: none;
+}
+
+.comments button {
+  max-width: 10rem;
+  padding: 1rem;
+}
