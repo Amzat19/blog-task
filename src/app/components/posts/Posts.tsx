@@ -51,31 +51,35 @@ export default function Posts() {
         </button>
       </div>
 
-      <div className={styles.postwrapper}>
-        {currentPosts.map((post: postsDataType) => {
-          return (
-            <article className={styles.post} key={post.id}>
-              <Link href={`post/${post.id}`}>
-                <h3>{post.title}</h3>
-              </Link>
-              <p>{post.content}</p>
-              <span>{post.timestamp}</span>
-              <div className={styles.actions}>
-                <button onClick={() => router.push(`/editPost/${post.id}`)}>
-                  Edit Post
-                </button>
-                <button onClick={() => dispatch(deletePost(post.id))}>
-                  Delete Post
-                </button>
-                <span>
-                  {post.comments.length}{" "}
-                  {post.comments.length === 1 ? "comment" : "comments"}
-                </span>
-              </div>
-            </article>
-          );
-        })}
-      </div>
+      {filteredPosts.length === 0 ? ( // Check if there are no results
+        <p>No results found.</p>
+      ) : (
+        <div className={styles.postwrapper}>
+          {currentPosts.map((post: postsDataType) => {
+            return (
+              <article className={styles.post} key={post.id}>
+                <Link href={`post/${post.id}`}>
+                  <h3>{post.title}</h3>
+                </Link>
+                <p>{post.content}</p>
+                <span>{post.timestamp}</span>
+                <div className={styles.actions}>
+                  <button onClick={() => router.push(`/editPost/${post.id}`)}>
+                    Edit Post
+                  </button>
+                  <button onClick={() => dispatch(deletePost(post.id))}>
+                    Delete Post
+                  </button>
+                  <span>
+                    {post.comments.length}{" "}
+                    {post.comments.length === 1 ? "comment" : "comments"}
+                  </span>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      )}
       <div className={styles.pagination}>
         <button
           onClick={() => dispatch(setCurrentPage(currentPage - 1))}
